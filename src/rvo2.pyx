@@ -64,6 +64,7 @@ cdef extern from "RVOSimulator.h" namespace "RVO":
                               float radius, float maxSpeed,
                               const Vector2 & velocity)
         void setAgentMaxNeighbors(size_t agentNo, size_t maxNeighbors)
+        void setAgentIgnoresAgent(size_t agentNo, size_t otherNo, bint ignore)
         void setAgentMaxSpeed(size_t agentNo, float maxSpeed)
         void setAgentNeighborDist(size_t agentNo, float neighborDist)
         void setAgentPosition(size_t agentNo, const Vector2 & position)
@@ -202,6 +203,8 @@ cdef class PyRVOSimulator:
 
     def setAgentMaxNeighbors(self, size_t agent_no, size_t max_neighbors):
         self.thisptr.setAgentMaxNeighbors(agent_no, max_neighbors)
+    def setAgentIgnoresAgent(self, size_t agent_no, size_t other_no, bint ignore):
+        self.thisptr.setAgentIgnoresAgent(agent_no, other_no, ignore)
     def setAgentMaxSpeed(self, size_t agent_no, float max_speed):
         self.thisptr.setAgentMaxSpeed(agent_no, max_speed)
     def setAgentNeighborDist(self, size_t agent_no, float neighbor_dist):

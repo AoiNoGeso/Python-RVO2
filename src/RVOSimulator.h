@@ -491,6 +491,11 @@ namespace RVO {
 		void setAgentMaxNeighbors(size_t agentNo, size_t maxNeighbors);
 
 		/**
+		 * \brief      CrowdGS2: agentNo が otherNo を近傍に入れない(回避しない)か．
+		 */
+		void setAgentIgnoresAgent(size_t agentNo, size_t otherNo, bool ignore);
+
+		/**
 		 * \brief      Sets the maximum speed of a specified agent.
 		 * \param      agentNo         The number of the agent whose maximum speed
 		 *                             is to be modified.

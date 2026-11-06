@@ -36,6 +36,8 @@
 #include "KdTree.h"
 #include "Obstacle.h"
 
+#include <algorithm>
+
 #ifdef _OPENMP
 #include <omp.h>
 #endif
@@ -320,6 +322,16 @@ namespace RVO {
 	void RVOSimulator::setAgentMaxNeighbors(size_t agentNo, size_t maxNeighbors)
 	{
 		agents_[agentNo]->maxNeighbors_ = maxNeighbors;
+	}
+
+	void RVOSimulator::setAgentIgnoresAgent(size_t agentNo, size_t otherNo, bool ignore)
+	{
+		std::vector<const Agent *> &ignored = agents_[agentNo]->ignoredAgents_;
+		const Agent *other = agents_[otherNo];
+		ignored.erase(std::remove(ignored.begin(), ignored.end(), other), ignored.end());
+		if (ignore) {
+			ignored.push_back(other);
+		}
 	}
 
 	void RVOSimulator::setAgentMaxSpeed(size_t agentNo, float maxSpeed)

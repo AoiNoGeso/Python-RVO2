@@ -87,6 +87,7 @@ namespace RVO {
 		void update();
 
 		std::vector<std::pair<float, const Agent *> > agentNeighbors_;
+		std::vector<const Agent *> ignoredAgents_;  // CrowdGS2: 近傍に入れない(回避しない)エージェント
 		size_t maxNeighbors_;
 		float maxSpeed_;
 		float neighborDist_;

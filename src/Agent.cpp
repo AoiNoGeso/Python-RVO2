@@ -360,6 +360,12 @@ namespace RVO {
 	void Agent::insertAgentNeighbor(const Agent *agent, float &rangeSq)
 	{
 		if (this != agent) {
+			for (size_t k = 0; k < ignoredAgents_.size(); ++k) {
+				if (ignoredAgents_[k] == agent) {
+					return;
+				}
+			}
+
 			const float distSq = absSq(position_ - agent->position_);
 
 			if (distSq < rangeSq) {
